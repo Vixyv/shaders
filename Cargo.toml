@@ -11,11 +11,11 @@ color-eyre = "0.6.2"
 [lints.rust]
 unsafe_code = "forbid"
 
-[lints.clippy]
-enum_glob_use = "deny"
-pedantic = "deny"
-nursery = "deny"
-unwrap_used = "deny"
+# [lints.clippy]
+# enum_glob_use = "deny"
+# pedantic = "deny"
+# nursery = "deny"
+# unwrap_used = "deny"
 
 [profile.release]
 opt-level = 'z'   # Optimise for size

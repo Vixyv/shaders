@@ -23,16 +23,18 @@ pub fn run() {
 
     event_loop.run(move |event, control_flow| {
         match event {
+            // Checks for a WindowEvent
             Event::WindowEvent {
                 ref event,
                 window_id,
             } if window_id == window.id() => match event {
+                // If the WindowEvent is clicking the <X> or `ESCAPE`, it closes the window
                 WindowEvent::CloseRequested => { control_flow.exit(); }
                 WindowEvent::KeyboardInput {
                     event:
                         KeyEvent {
                             state: ElementState::Pressed,
-                            physical_key: PhysicalKey::Code(Escape),
+                            physical_key: PhysicalKey::Code(escape),
                             .. 
                         },
                     ..

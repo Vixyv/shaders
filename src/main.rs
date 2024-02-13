@@ -2,7 +2,7 @@
 #![allow(unused_variables)]
 #![allow(unused_imports)]
 
-use shaders::run;
+use wgpu_book::run;
 
 fn main() {  
     run();

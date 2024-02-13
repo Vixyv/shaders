@@ -16,8 +16,73 @@ use winit::{
     window::WindowBuilder,
 };
 
+
+
+use winit::window::Window;
+
+struct State {
+    surface: wgpu::Surface<'static>,
+    device: wgpu::Device,
+    queue: wgpu::Queue,
+    config: wgpu::SurfaceConfiguration,
+    size: winit::dpi::PhysicalSize<u32>,
+    // The window must be declared after the surface so
+    // it gets dropped after it as the surface contains
+    // unsafe references to the window's resources.
+    window: Window,
+}
+
+impl State {
+    // Creating some of the wgpu types requires async code
+    // SHOULD RETURN `SELF`
+    async fn new(window: Window) -> () {
+        let size = window.inner_size();
+
+        // The instance is a handle to our GPU
+        // Backends::all => Vulkan + Metal + DX12 + Browser WebGPU
+        let instance = wgpu::Instance::new(wgpu::InstanceDescriptor {
+            backends: wgpu::Backends::all(),
+            ..Default::default()
+        });
+        
+        let surface = instance.create_surface(&window).unwrap();
+
+        let adapter = instance.request_adapter(
+            &wgpu::RequestAdapterOptions {
+                power_preference: wgpu::PowerPreference::default(),
+                compatible_surface: Some(&surface),
+                force_fallback_adapter: false,
+            },
+        ).await.unwrap();
+    }
+
+    pub fn window(&self) -> &Window {
+        &self.window
+    }
+
+    fn resize(&mut self, new_size: winit::dpi::PhysicalSize<u32>) {
+        todo!()
+    }
+
+    fn input(&mut self, event: &WindowEvent) -> bool {
+        todo!()
+    }
+
+    fn update(&mut self) {
+        todo!()
+    }
+
+    fn render(&mut self) -> Result<(), wgpu::SurfaceError> {
+        todo!()
+    }
+}
+
+
+
+
 pub fn run() {
-    env_logger::init();
+    setup();
+    
     let event_loop = EventLoop::new().unwrap();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
 
@@ -32,7 +97,7 @@ pub fn run() {
                     event:
                         KeyEvent {
                             state: ElementState::Pressed,
-                            physical_key: PhysicalKey::Code(Escape),
+                            physical_key: PhysicalKey::Code(escape),
                             .. 
                         },
                     ..

@@ -11,6 +11,14 @@ wgpu = "0.19.1"       # WebGPU
 env_logger = "0.11.1" # Shows wgpu errors
 winit = "0.29.10"     # Window manager
 
+cgmath = "0.18"       # Linear algebra and math library for graphics
+futures = "0.3"       # An implementation of futures and streams featuring zero allocations, composability, and iterator-like interfaces
+gfx-hal = "0.9"       # `gfx-rs` hardware abstraction layer
+image = "0.24.8"      # Imaging library in rust
+log = "0.4"           # Logging façade for Rust
+pollster = "0.3"      # Async executor that lets you block on a future
+anyhow = "1.0"        # Provides anyhow::Error
+
 
 [lints.rust]
 unsafe_code = "forbid"
